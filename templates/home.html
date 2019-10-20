@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text">
+    <nav class="container" style="height: 5vh">
+    </nav>
+
+    <div class="container row justify-content-center">
+        <div class="col-lg pt-5">
+            <table class="table table-borderless text-light">
+                <thead class="border-bottom">
+                    <tr class="d-flex">
+                        <th class="col-sm  col-md-1"></th>
+                        <th class="col-sm-2 col-md-3">Teams</th>
+                        <th class="col-sm-2 col-md-2">Points</th>
+                        <th class="col-sm-1 col-md-1">P</th>
+                        <th class="col-sm-1 col-md-1">W</th>
+                        <th class="col-sm-1 col-md-1">D</th>
+                        <th class="col-sm-1 col-md-1">L</th>
+                        <th class="col-sm-1 col-md-1">G(F:A)</th>
+                        <th class="col-sm-1 col-md-1">GD</th>
+                    </tr>
+                </thead>
+                {% for i in table %}
+                <tbody>
+                    <tr class="d-flex">
+                        <th class="col-sm  col-md-1" scope="row">{{ i.position }}</th>
+                        <td class="col-sm-2 col-md-3 border-left"><a href=""
+                                class="text-white"><strong>{{ i.team.name }}</strong></a>
+                        </td>
+                        <td class="col-sm-2 col-md-2">{{ i.points }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.playedGames }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.won }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.draw }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.lost }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.goalsFor }}:{{ i.goalsAgainst }}</td>
+                        <td class="col-sm-1 col-md-1">{{ i.goalDifference }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
