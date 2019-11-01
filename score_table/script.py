@@ -44,30 +44,73 @@ def get_info_api(url):
 
 
 def competitions(competition_id='2021'):
+    # infor about the leage table
     url = URL + f'competitions/{competition_id}/standings'
     resp = get_info_api(url)
     table = resp['standings'][0]['table']
+    # print_in_file(table, 'aaaaaaaaa')
 
-    return table
+    # infor about the leage top scorer
+    url = URL + f'competitions/{competition_id}/scorers/'
+    resp = get_info_api(url)
+    scorers = resp['scorers']
+
+    return table, scorers
 
 
-def teams(id='64'):  # liverpool team id = 64
+def team_matches(id='64'):  # liverpool team id = 64
 
     upcoming_matches = f'{URL}/teams/{id}/matches?status=SCHEDULED'
-    all_matches_of_one_team = f'{URL}/teams/{id}/matches/'
+    finished_matches = f'{URL}/teams/{id}/matches?status=FINISHED'
 
-    resp = get_info_api(all_matches_of_one_team)
-    print_in_file(resp, file_name='all_matches_of_one_team')
-
-
-def matches():  # liv vs someone
-    def one_match(id=264426):
-        one_match = f'{URL}/matches/{id}'
-        all_matches_of_one_team = f'{URL}/teams/{id}/matches/'
-
-        resp = get_info_api(one_match)
-        print_in_file(resp, file_name='one_match')
+    upcoming = get_info_api(upcoming_matches)
+    finished = get_info_api(finished_matches)
+    return upcoming['matches'], finished['matches']
 
 
+def team_detail(id='64'):  # liverpool team id = 64
+    team = f'{URL}/teams/{id}'
+
+    resp = get_info_api(team)
+    return resp
+
+
+def match_day_point(competition_id=2021, team_id=64):
+    point_by_match_day = dict()
+    points = 0
+    up, fn = team_matches()
+
+    # Keeping premier league only
+    for m in fn:
+        if m['competition']['id'] != competition_id:
+            fn.remove(m)
+
+    # calculating points by matchday
+    for m in fn:
+        # checking my team result
+        if m['homeTeam']['id'] == team_id:
+            my_team = 'HOME_TEAM'
+        else:
+            my_team = 'AWAY_TEAM'
+
+        if m['score']['winner'] == 'DRAW':
+            points += 1
+        elif m['score']['winner'] == my_team:
+            points += 3
+
+        point_by_match_day[str(m['matchday'])] = points
+    print(point_by_match_day)
+
+    return point_by_match_day
+
+
+# def matches():  # liv vs someone
+#     def one_match(id=264426):
+#         one_match = f'{URL}/matches/{id}'
+#         all_matches_of_one_team = f'{URL}/teams/{id}/matches/'
+#         resp = get_info_api(one_match)
+#         print_in_file(resp, file_name='one_match')
+# def table_by_match_day():
+#     pass
 if __name__ == "__main__":
-    pass
+    match_day_point()

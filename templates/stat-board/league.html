@@ -1,0 +1,174 @@
+{% extends 'stat-board/stat_base.html' %}
+
+{% block extra_style %}
+
+<style>
+    .map-container {
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        height: 0;
+    }
+
+    .map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+</style>
+{% endblock extra_style %}
+
+{% block content %}
+<!--Main layout-->
+<main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+
+        <!--Grid row (Point table & Scorrer)-->
+        <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-9 mb-4">
+                <h5 class="text-white lead">Standings</h5>
+                <!--Card-->
+                <div class="card">
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <!-- Table  -->
+                        <table class="table table-hover table-sm ">
+                            <!-- Table head -->
+                            <thead class="blue-grey lighten-4">
+                                <tr>
+                                    <th></th>
+                                    <th>Teams</th>
+                                    <th>Points</th>
+                                    <th>P</th>
+                                    <th>W</th>
+                                    <th>D</th>
+                                    <th>L</th>
+                                    <th>G(F:A)</th>
+                                    <th>GD</th>
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            {% for i in table %}
+                            <tbody>
+                                {% if forloop.counter < 5 %}
+                                <tr class="blue lighten-3">
+                                    {% else %}
+                                <tr>
+                                    {% endif %}
+                                    <td>{{ i.position }}</td>
+                                    <td><img class="mr-1" height="30px" width="25px" src="{{ i.team.crestUrl }}" alt="">
+                                        <a href="{% url 'team' i.team.id %}" class="font-weight-bold"><strong>
+                                                {{ i.team.name }}</strong></a>
+                                    </td>
+                                    <td>{{ i.points }}</td>
+                                    <td>{{ i.playedGames }}</td>
+                                    <td>{{ i.won }}</td>
+                                    <td>{{ i.draw }}</td>
+                                    <td>{{ i.lost }}</td>
+                                    <td>{{ i.goalsFor }}:{{ i.goalsAgainst }}</td>
+                                    <td>{{ i.goalDifference }}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
+
+                    </div>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-3 mb-4">
+                <h5 class="text-white lead">Top Scorer</h5>
+                <!--Card-->
+                <div class="card">
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <!-- Table  -->
+                        <table class="table table-hover table-sm ">
+                            <!-- Table head -->
+                            <thead class="blue-grey lighten-4">
+                                <tr>
+
+                                    <th>Name</th>
+                                    <th>Goals</th>
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            {% for i in scorers %}
+                            <tbody>
+
+                                <tr>
+                                    <td><a href="" class="font-weight-bold"><strong>{{ i.player.name }}</strong><br>
+                                            <small>{{ i.team.name }}</small><br><small>{{ i.player.nationality}}</small></a>
+                                    </td>
+
+                                    <td>{{ i.numberOfGoals }}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
+
+                    </div>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-lg-12 col-md-6 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header">Line chart</div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <canvas id="lineChart"></canvas>
+
+                    </div>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+</main>
+<!--Main layout-->
+{% endblock content %}

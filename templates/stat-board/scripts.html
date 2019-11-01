@@ -1,0 +1,65 @@
+{% load static %}
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Initializations -->
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+</script>
+
+<!-- Charts -->
+<script>
+    //line
+    var ctxL = document.getElementById("lineChart").getContext('2d');
+    var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "Liverpool",
+                backgroundColor: [
+                    'rgba(197, 22, 22, .5)',
+                ],
+                borderColor: [
+                    'rgba(197, 22, 22, 1)',
+                ],
+                borderWidth: 2,
+                data: [9, 18, 24, 28]
+            },
+            {
+                label: "Manchester City",
+                backgroundColor: [
+                    'rgba(78, 110, 228, .5)',
+                ],
+                borderColor: [
+                    'rgba(0, 10, 130, 1)',
+                ],
+                data: [7, 13, 16, 22]
+            },
+            {
+                label: "Other 3rd",
+                backgroundColor: [
+                    'rgba(0, 137, 132, .2)',
+                ],
+                borderColor: [
+                    'rgba(0, 10, 130, .7)',
+                ],
+                data: [6, 11, 15, 20]
+            }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+
+</script>

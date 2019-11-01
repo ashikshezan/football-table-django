@@ -1,0 +1,65 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark mdb-color darken-4 scrolling-navbar">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand waves-effect" href="{% url 'home' %}">
+            <strong class="blue-text">Europe</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'home' %}">Premier
+                        League</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'BL1' %}">Bundesliga</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'PD' %}">La Liga</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'SA' %}">Serie A</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'DED' %}">Eredivisie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'FL1' %}">Ligue 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect btn" href="{% url 'league' 'PPL' %}"> Primeira Liga</a>
+                </li>
+
+            </ul>
+
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a href="#" class="nav-link waves-effect" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link waves-effect" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->

@@ -1,0 +1,84 @@
+{% extends 'home_base.html' %}
+{% load static  %}
+
+
+{% block extra_styles %}
+<style>
+    .bg {
+        background: url("{% static 'img/uefa.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    .bg .overlay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .content-area {
+        padding-top: 100px;
+    }
+
+    .lay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .league-img {
+        width: 100px;
+        height: 100px;
+    }
+
+</style>
+{% endblock extra_styles %}
+
+
+{% block content %}
+<!--Navbar -->
+<div class="bg">
+    <div class="overlay">
+        {% include 'navbar.html' %}
+        <div class="container content-area text-white">
+            <div class="row">
+
+                <!-- big 5 league table -->
+                <div class="col-md-8">
+
+                    <div class="card border-primary bg-transparent mb-3">
+                        <div class="card-body">
+
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-2 ">
+                                        <img src="{% static 'img/epl.png' %}" class="league-img" alt="">
+                                    </div>
+                                    <div class="col">
+                                        asd
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- somebig matches -->
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--/.Navbar -->
+{% endblock content %}
